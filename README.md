@@ -12,4 +12,4 @@ To run the application, go to the root project directory and simply type the fol
 
 The application will be deployed to the following address:
 
-(http://localhost:8080/editor.html)
+[http://localhost:8080/editor.html](http://localhost:8080/editor.html)
