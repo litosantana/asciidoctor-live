@@ -60,7 +60,7 @@ function processText(inputText, inputFormat) {
 $( document ).ready(function() {
 
     var lastWasChar = false;
-    var inputFormat = "asciidoc";
+    var inputFormat = $('.inputFormat:checked').val();
     adjustTextAreaHeight();
 
     $('#inputText').keyup(function(){
@@ -77,4 +77,7 @@ $( document ).ready(function() {
         inputFormat = $(this).attr("value");
         processText($('#inputText').val(), inputFormat);
     });
+
+    processText($('#inputText').val(), inputFormat);
+
 });
