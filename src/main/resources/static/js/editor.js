@@ -23,7 +23,7 @@ function updateConverted(responseData) {
 function processText(inputText) {
 
     var posting = $.ajax({
-        url: '/convert',
+        url: '/convertAsciidoc',
         processData: false,
         type: 'POST',
         data: inputText,
@@ -41,9 +41,15 @@ function processText(inputText) {
  */
 $( document ).ready(function() {
 
+    var lastWasChar = false;
     adjustTextAreaHeight();
 
     $('#inputText').keyup(function(){
-        processText($(this).val());
+        if (lastWasChar) {
+            processText($(this).val());
+        }
+    });
+    $('#inputText').keypress(function(e){
+        lastWasChar = (e.which !== 0);
      });
 });

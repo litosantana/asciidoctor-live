@@ -23,7 +23,7 @@ public class AsciidocConverterController {
         ASCII_DOCTOR_OPTIONS = OptionsBuilder.options().headerFooter(false).attributes(attributes).get();
     }
 
-    @RequestMapping(value = "/convert", method = RequestMethod.POST)
+    @RequestMapping(value = "/convertAsciidoc", method = RequestMethod.POST)
     public String convert(@RequestBody String inputText) {
 
         return ASCII_DOCTOR.convert(inputText, ASCII_DOCTOR_OPTIONS);
