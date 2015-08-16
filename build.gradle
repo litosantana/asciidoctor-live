@@ -26,9 +26,9 @@ repositories {
 }
 
 dependencies {
-
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.asciidoctor:asciidoctorj:1.5.2")
+    compile("org.markdownj:markdownj-core:0.4")
     testCompile("junit:junit")
 }
 

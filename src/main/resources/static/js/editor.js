@@ -16,14 +16,32 @@ function updateConverted(responseData) {
 }
 
 /**
- * Given some Asciidoc text, make a request to get the converted text.
+ * Given an input format, get the request API to use.
+ *
+ * @param inputFormat The input format
+ */
+function getAPI(inputFormat) {
+    switch(inputFormat) {
+        case "markdown":
+            return '/convertMarkdown';
+            break;
+        case "asciidoc":
+        default:
+            return '/convertAsciidoc';
+            break;
+    }
+}
+
+/**
+ * Given some input text, make a request to get the converted text.
  *
  * @param inputText The raw text
+ * @param inputFormat The expected format
  */
-function processText(inputText) {
+function processText(inputText, inputFormat) {
 
     var posting = $.ajax({
-        url: '/convertAsciidoc',
+        url: getAPI(inputFormat),
         processData: false,
         type: 'POST',
         data: inputText,
@@ -42,14 +60,21 @@ function processText(inputText) {
 $( document ).ready(function() {
 
     var lastWasChar = false;
+    var inputFormat = "asciidoc";
     adjustTextAreaHeight();
 
     $('#inputText').keyup(function(){
         if (lastWasChar) {
-            processText($(this).val());
+            processText($(this).val(), inputFormat);
         }
     });
+
     $('#inputText').keypress(function(e){
         lastWasChar = (e.which !== 0);
-     });
+    });
+
+    $('.inputFormat').click(function() {
+        inputFormat = $(this).attr("value");
+        processText($('#inputText').val(), inputFormat);
+    });
 });
