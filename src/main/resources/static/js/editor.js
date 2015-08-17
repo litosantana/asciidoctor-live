@@ -54,6 +54,15 @@ function processText(inputText, inputFormat) {
 }
 
 /**
+ * Update the "Download" link to embed the data.
+ */
+function updateDownloadLink() {
+
+    var dataUri = 'data:text/plain;charset=utf-8,' + encodeURIComponent($('#inputText').val());
+    $('#btnExport').attr({'href': dataUri, 'target': '_blank'});
+}
+
+/**
  * Once the document is ready, set up a handler that
  * triggers a request call when a "key up" event is triggered.
  */
@@ -78,6 +87,9 @@ $( document ).ready(function() {
         processText($('#inputText').val(), inputFormat);
     });
 
-    processText($('#inputText').val(), inputFormat);
+    $('#btnExport').click(function (event) {
+        updateDownloadLink();
+    });
 
+    processText($('#inputText').val(), inputFormat);
 });
