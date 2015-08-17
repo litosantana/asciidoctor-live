@@ -5,6 +5,12 @@
     border: 1px solid #aaa;
 }
 
+#btnExport {
+    display: inline;
+    width: 50%;
+    float: left;
+}
+
 #inputTextContainer, #converted {
     width: 50%;
     height: 100%;
