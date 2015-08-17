@@ -72,13 +72,15 @@ $( document ).ready(function() {
     var inputFormat = $('.inputFormat:checked').val();
     adjustTextAreaHeight();
 
-    $('#inputText').keyup(function(){
+    var inputText = $('#inputText');
+
+    inputText.keyup(function(){
         if (lastWasChar) {
             processText($(this).val(), inputFormat);
         }
     });
 
-    $('#inputText').keypress(function(e){
+    inputText.keypress(function(e){
         lastWasChar = (e.which !== 0);
     });
 
@@ -91,5 +93,5 @@ $( document ).ready(function() {
         updateDownloadLink();
     });
 
-    processText($('#inputText').val(), inputFormat);
+    processText(inputText.val(), inputFormat);
 });
